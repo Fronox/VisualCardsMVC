@@ -1,0 +1,134 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model System.Collections.Generic.List<ColumnModel>
+
+<style>
+    .column {
+        float: left;
+        width: 32%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .columnHead {
+        text-align: center;
+    }
+    
+    .addColumn {
+        float: right;
+        width: 4%;
+        padding: 5px;
+    }
+
+    .board:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+    p {
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 5px; 
+        padding: 0px;
+        font-family: Helvetica;
+        font-size: 14px;
+    }
+    
+    button {
+        font-family: Helvetica;
+        font-size: 12px;
+    }
+
+    .btn-group button {
+        background-color: #118880;
+        border: 1px solid skyblue; 
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        float: left;
+    }
+
+    .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none;
+    }
+
+    .btn-group button:hover {
+        background-color: #11AAAA;
+    }
+    
+    .addColumn button {
+        background-color: #118880; /* Green background */
+        border: 1px solid skyblue; /* Green border */
+        color: white;
+        padding: 5px 10px;
+    }
+</style>
+
+
+<div class=addColumn>
+    @using (Html.BeginForm("AddColumn", "Column"))
+    {
+        <button type="submit">New Column</button>
+    }
+</div>
+
+<div class = board>
+    @foreach (var column in Model)
+    {
+        <div class = column>
+            <div class = columnHead>
+                <h4>
+                    @Html.DisplayFor(columnItem => column.Title)
+                </h4>
+            </div>
+            <div class = columnBody>
+                @foreach (var card in column.CardList)
+                {
+                    <h6>
+                        Название:
+                        @Html.DisplayFor(cardItem => card.Title) <br>
+                        Описание:
+                        @Html.DisplayFor(cardItem => card.Description) <br>
+                    </h6>
+                    
+                    <div class="btn-group">
+                        @using (Html.BeginForm("EditCard", "Card", FormMethod.Get))
+                        {
+                            @Html.Hidden("cardId", card.CardId)
+                            <button type="submit">Edit</button>
+                        }
+
+                        @using (Html.BeginForm("DeleteCard", "Card"))
+                        {
+                            @Html.Hidden("CardId", card.CardId)
+                            <button type="submit">Delete</button>
+                        }
+                    </div>
+                }    
+                
+                <br> <br> <br>
+                
+                <div class="btn-group">
+                    @using (Html.BeginForm("DeleteColumn", "Column"))
+                    {
+                        @Html.Hidden("ColumnId", column.ColumnId)
+                        <button type="submit">Delete Column</button>
+                    }
+                    @using (Html.BeginForm("AddCard", "Card"))
+                    {
+                        @Html.Hidden("columnId", column.ColumnId)
+                        <button type="submit">New record</button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+    

@@ -1,0 +1,53 @@
+@model CardModel
+
+<style>
+    button {
+        font-family: Helvetica;
+        font-size: 12px;
+    }
+
+    .btn-group button {
+        background-color: #118880;
+        border: 1px solid skyblue; 
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        float: left;
+    }
+
+    .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none;
+    }
+
+    .btn-group button:hover {
+        background-color: #11AAAA;
+    }
+</style>
+
+@using (Html.BeginForm("SaveCard", "Card", FormMethod.Post))
+{
+    <div>
+        @Html.EditorFor(model => model.Title) <br>
+        @Html.EditorFor(model => model.Description)
+    </div>
+    <br/>
+    <div class="btn-group">
+        @Html.Hidden("title", Model.Title)
+        @Html.Hidden("description", Model.Description)
+        @Html.Hidden("columnId", Model.ColumnId)
+        <button type="submit">Done</button>
+    </div>
+}
+<br/>
+@using (Html.BeginForm("Columns", "Column", FormMethod.Get))
+{
+    <div class="btn-group">
+        <button type="submit">Cancel</button>
+    </div>
+}

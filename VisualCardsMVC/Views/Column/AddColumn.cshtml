@@ -1,0 +1,51 @@
+@model ColumnModel
+
+<style>
+        
+    button {
+        font-family: Helvetica;
+        font-size: 12px;
+    }
+
+    .btn-group button {
+        background-color: #118880;
+        border: 1px solid skyblue; 
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        float: left;
+    }
+
+    .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none;
+    }
+
+    .btn-group button:hover {
+        background-color: #11AAAA;
+    }
+</style>
+
+@using (Html.BeginForm("SaveColumn", "Column", FormMethod.Post))
+{
+    <div>
+        @Html.EditorFor(model => model.Title)
+    </div>
+    <br/>
+    <div class="btn-group">
+        @Html.Hidden("title", Model.Title)
+        <button type="submit">Done</button>
+    </div>
+}
+<br/>
+@using (Html.BeginForm("Columns", "Column", FormMethod.Get))
+{
+    <div class="btn-group">
+        <button type="submit">Cancel</button>
+    </div>
+}
