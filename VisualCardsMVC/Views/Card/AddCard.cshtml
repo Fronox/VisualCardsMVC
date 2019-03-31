@@ -30,7 +30,7 @@
     }
 </style>
 
-@using (Html.BeginForm("SaveCard", "Card", FormMethod.Post))
+@using (Html.BeginForm("HttpSaveCard", "Card", FormMethod.Post))
 {
     <div>
         @Html.EditorFor(model => model.Title) <br>

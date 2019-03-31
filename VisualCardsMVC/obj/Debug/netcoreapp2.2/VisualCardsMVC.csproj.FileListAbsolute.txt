@@ -33,3 +33,4 @@
 /home/fronox/Education/5 course/Enterprise/VisualCardsMVC/VisualCardsMVC/obj/Debug/netcoreapp2.2/Razor/Views/Card/EditCard.g.cshtml.cs
 /home/fronox/Education/5 course/Enterprise/VisualCardsMVC/VisualCardsMVC/obj/Debug/netcoreapp2.2/Razor/Views/Card/AddCard.g.cshtml.cs
 /home/fronox/Education/5 course/Enterprise/VisualCardsMVC/VisualCardsMVC/obj/Debug/netcoreapp2.2/Razor/Views/Column/AddColumn.g.cshtml.cs
+/home/fronox/Education/5 course/Enterprise/VisualCardsMVC/VisualCardsMVC/obj/Debug/netcoreapp2.2/Razor/Views/Card/SearchCardByTitle.g.cshtml.cs

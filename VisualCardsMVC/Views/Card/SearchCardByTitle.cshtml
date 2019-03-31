@@ -1,0 +1,63 @@
+@model System.Collections.Generic.List<VisualCardsMVC.Models.CardModel>
+
+<style>
+    .board:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    button {
+        font-family: Helvetica;
+        font-size: 12px;
+    }
+
+    .btn-group button {
+        background-color: #118880;
+        border: 1px solid skyblue; 
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        float: left;
+    }
+
+    .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none;
+    }
+
+    .btn-group button:hover {
+        background-color: #11AAAA;
+    }
+</style>
+
+<div class = "board">
+    @foreach (var card in Model)
+    {
+        <h6>
+            Название:
+            @Html.DisplayFor(cardItem => card.Title) <br>
+            Описание:
+            @Html.DisplayFor(cardItem => card.Description) <br>
+        </h6>
+                    
+        <div class="btn-group">
+            @using (Html.BeginForm("EditCard", "Card", FormMethod.Get))
+            {
+                @Html.Hidden("cardId", card.CardId)
+                <button type="submit">Edit</button>
+            }
+
+            @using (Html.BeginForm("HttpDeleteCard", "Card"))
+            {
+                @Html.Hidden("CardId", card.CardId)
+                <button type="submit">Delete</button>
+            }
+        </div>
+    }   
+</div>
+

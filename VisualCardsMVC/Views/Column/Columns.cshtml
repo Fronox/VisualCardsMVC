@@ -70,6 +70,19 @@
     }
 </style>
 
+<div>
+    @using (Html.BeginForm("SearchCardByTitle", "Card", FormMethod.Get))
+    {
+        <ul class="nav navbar-nav">
+            <li>@Html.TextBox("searchTitle", ViewBag.CurrentFilter as string)</li>
+            <li><div class="btn-group">
+                <button type="submit">Search</button>
+            </div>
+                </li>
+        </ul>
+    }
+</div>
+
 
 <div class=addColumn>
     @using (Html.BeginForm("AddColumn", "Column"))
@@ -104,7 +117,7 @@
                             <button type="submit">Edit</button>
                         }
 
-                        @using (Html.BeginForm("DeleteCard", "Card"))
+                        @using (Html.BeginForm("HttpDeleteCard", "Card"))
                         {
                             @Html.Hidden("CardId", card.CardId)
                             <button type="submit">Delete</button>
