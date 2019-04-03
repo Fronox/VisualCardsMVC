@@ -31,6 +31,18 @@ namespace VisualCardsMVC.Controllers
             return RedirectToAction("Columns", "Column");
         }
         
+        public async Task<IActionResult> SearchCardByTitle(string searchTitle)
+        {
+            var cardList = new List<CardModel>();
+            var resp = await _client.GetAsync($"{_path}/search?title={searchTitle}");
+            if (resp.IsSuccessStatusCode)
+            {
+                cardList = await resp.Content.ReadAsAsync<List<CardModel>>();
+            }
+
+            return View(cardList);
+        }
+        
         public async Task<CardModel> HttpGetCard(int id)
         {
             CardModel card = null;
@@ -53,18 +65,6 @@ namespace VisualCardsMVC.Controllers
             var card = new CardModel(0, title, description, columnId);
             await _client.PostAsJsonAsync($"{_path}", card);
             return RedirectToAction("Columns", "Column");
-        }
-        
-        public async Task<IActionResult> SearchCardByTitle(string searchTitle)
-        {
-            var cardList = new List<CardModel>();
-            var resp = await _client.GetAsync($"{_path}/search?title={searchTitle}");
-            if (resp.IsSuccessStatusCode)
-            {
-                cardList = await resp.Content.ReadAsAsync<List<CardModel>>();
-            }
-
-            return View(cardList);
         }
     }
 }

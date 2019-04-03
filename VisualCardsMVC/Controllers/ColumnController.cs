@@ -17,7 +17,7 @@ namespace VisualCardsMVC.Controllers
             return View(columns);
         }
         
-        public async Task<List<CardModel>> HttpGetColumn()
+        /*public async Task<List<CardModel>> HttpGetColumn()
         {
             List<CardModel> card = null;
             var response = await _client.GetAsync(_path);
@@ -26,7 +26,7 @@ namespace VisualCardsMVC.Controllers
                 card = await response.Content.ReadAsAsync<List<CardModel>>();
             }
             return card;
-        }
+        }*/
 
         public async Task<List<ColumnModel>> HttpGetColumns()
         {
